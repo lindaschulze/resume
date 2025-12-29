@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Linda Schulze – Lebenslauf</title>
+  <meta name="description" content="Lebenslauf von Linda Schulze – HR/RD, Strategic Design, OE & Change, Data-driven HR." />
+  <meta name="color-scheme" content="dark light">
+
+  <!-- Interaktive Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <style>
+    :root{
+      --bg: #0b0d12;
+      --panel: rgba(18, 22, 32, .78);
+      --panel2: rgba(18, 22, 32, .55);
+      --text: #eef1f7;
+      --muted: #a8b0c2;
+      --line: rgba(255,255,255,.10);
+      --chip: rgba(255,255,255,.07);
+      --shadow: 0 12px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background:
+        radial-gradient(1200px 700px at 15% -10%, rgba(120,162,255,.18) 0%, rgba(120,162,255,0) 60%),
+        radial-gradient(900px 600px at 110% 0%, rgba(200,120,255,.14) 0%, rgba(200,120,255,0) 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:inherit}
+    .wrap{max-width:1050px; margin:0 auto; padding:28px 18px 60px;}
+    .card{
+      border:1px solid var(--line);
+      background:var(--panel);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(8px);
+      overflow:hidden;
+    }
+
+    /* Banner */
+    .banner{
+      position:relative;
+      height:210px;
+      background:
+        linear-gradient(90deg, rgba(12,14,20,.86), rgba(12,14,20,.35)),
+        url("MB-banner.jpg");
+      background-size: cover;
+      background-position: center;
+      border-bottom:1px solid var(--line);
+    }
+    .banner::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(11,13,18,.10), rgba(11,13,18,.90));
+      pointer-events:none;
+    }
+
+    /* Header */
+    .head{
+      display:flex;
+      gap:18px;
+      align-items:flex-start;
+      justify-content:space-between;
+      padding:18px 18px 16px;
+    }
+    .name{
+      display:flex; flex-direction:column; gap:6px;
+      max-width: 680px;
+    }
+    h1{margin:0; font-size:30px; letter-spacing:.2px;}
+    .tagline{margin:0; color:var(--muted); font-size:14px;}
+    .exec{
+      margin-top:10px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .exec > div{
+      border:1px solid var(--line);
+      background: var(--panel2);
+      border-radius: var(--radius2);
+      padding:10px 12px;
+      font-size:13px;
+      color:#e9edf7;
+    }
+    .exec strong{font-weight:700}
+    .contact{
+      min-width:270px;
+      display:flex; flex-direction:column; gap:8px;
+      color:var(--muted);
+      font-size:13.5px;
+    }
+    .contact .row{display:flex; gap:10px; justify-content:space-between;}
+    .btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      font-size:13px;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .btn:hover{border-color: rgba(255,255,255,.22)}
+    .divider{height:1px; background:var(--line);}
+
+    /* Layout */
+    .grid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:14px;
+    }
+    @media (max-width: 920px){
+      .grid{grid-template-columns:1fr}
+      .exec{grid-template-columns:1fr}
+      .contact{min-width:unset}
+      .head{flex-direction:column}
+      .banner{height:170px}
+    }
+
+    .section{
+      padding:16px;
+      border:1px solid var(--line);
+      background: var(--panel);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+    .section h2{
+      margin:0 0 12px;
+      font-size:13px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:#cfd6ea;
+    }
+
+    /* Experience items */
+    .item{padding:12px 0; border-top:1px solid var(--line)}
+    .item:first-of-type{border-top:none; padding-top:0}
+    .top{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+    .role{font-weight:750}
+    .meta{color:var(--muted); font-size:13px}
+    ul{margin:8px 0 0 18px; padding:0}
+    li{margin:6px 0; color:#e7ebf6}
+
+    /* Chips */
+    .chips{display:flex; flex-wrap:wrap; gap:8px}
+    .chip{
+      background: var(--chip);
+      border:1px solid var(--line);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12.5px;
+      color:#dde2f3;
+    }
+
+    /* Chart containers */
+    .chartbox{
+      border:1px solid var(--line);
+      background: var(--panel2);
+      border-radius: var(--radius2);
+      padding:12px;
+      margin-top:10px;
+    }
+    .charttitle{
+      display:flex; justify-content:space-between; align-items:baseline;
+      gap:10px; margin:0 0 8px;
+    }
+    .charttitle span{color:var(--muted); font-size:12.5px}
+    canvas{max-width:100%}
+
+    footer{
+      margin-top:18px;
+      text-align:center;
+      color:var(--muted);
+      font-size:12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="card">
+      <!-- Banner image placeholder: place MB-banner.jpg in repo root -->
+      <div class="banner" role="img" aria-label="Banner"></div>
+
+      <div class="head">
+        <div class="name">
+          <h1>Linda Schulze</h1>
+          <p class="tagline">HR/RD · Strategic Design · Organisationsentwicklung & Change · Data-driven HR · Projekt- & Gremienmanagement</p>
+
+          <div class="exec">
+            <div><strong>Strategie → Umsetzung:</strong> Standardisierung & Digitalisierung der Personalplanung (Konzern & RD) inkl. HR-KPI-Steuerung.</div>
+            <div><strong>Transformation:</strong> Steuerung bereichsübergreifender Initiativen (u. a. Winning Attitude, Expert Journey, Culture@HR/RD).</div>
+            <div><strong>Linking Pin:</strong> Starkes HR- & RD-Netzwerk, sicher auf allen Ebenen; routiniert im Stakeholder- & Gremienumfeld.</div>
+            <div><strong>Data Analytics:</strong> Leitung HR Focus Topic Data Analytics (Vorstandsprojekt) & Aufbau KPI-Dashboards.</div>
+          </div>
+        </div>
+
+        <div class="contact">
+          <div class="row"><span><strong>Standort</strong></span><span>Sindelfingen / Stuttgart</span></div>
+          <div class="row"><span><strong>E-Mail</strong></span><span><a href="mailto:linda.schulze@mercedes-benz.com">linda.schulze@mercedes-benz.com</a></span></div>
+          <div class="row"><span><strong>Telefon</strong></span><span>+49 176 30954494</span></div>
+
+          <div class="btns">
+            <a class="btn" href="mailto:linda.schulze@mercedes-benz.com">Kontakt</a>
+            <button class="btn" onclick="window.print()">Drucken / PDF</button>
+          </div>
+
+          <div class="meta" style="margin-top:6px;">
+            Tipp: Für öffentliche Version ggf. Telefonnummer entfernen.
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+    </div>
+
+    <div class="grid">
+      <!-- LEFT: Experience -->
+      <div class="section">
+        <h2>Berufserfahrung</h2>
+
+        <div class="item">
+          <div class="top">
+            <div>
+              <div class="role">Projektkoordination, Querschnittsthemen & Gremienmanagement (HR/RD)</div>
+              <div class="meta">Mercedes-Benz AG · Sindelfingen</div>
+            </div>
+            <div class="meta">06/2022 – heute</div>
+          </div>
+          <ul>
+            <li>Unterstützung der Personalleitung HR/RD; Steuerung bereichsübergreifender Themen.</li>
+            <li>Leitung/Steuerung von Initiativen wie <strong>Winning Attitude</strong>, <strong>Expert Journey</strong> (inkl. Tool) und <strong>Culture@HR/RD</strong>.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <div class="top">
+            <div>
+              <div class="role">Personalplanung & Reporting (RD, CASE-CTO, CASE, MP / HRM-RDT)</div>
+              <div class="meta">Mercedes-Benz AG · Sindelfingen</div>
+            </div>
+            <div class="meta">01/2020 – 05/2022</div>
+          </div>
+          <ul>
+            <li>Standardisierung & Digitalisierung von Personalplanungsprozessen (Konzern & RD).</li>
+            <li>Aufbau von <strong>HR-KPI-Dashboards</strong> zur datenbasierten Steuerung.</li>
+            <li>Projektleitung: <strong>HR Focus Topic Data Analytics</strong> (Vorstandsebene).</li>
+            <li>Rollout/technische Umsetzung: <strong>IMPULSE / MyContribution</strong> auf E5- & SB-Ebene in RD.</li>
+            <li>Mitwirkung: <strong>Target Operating Model HR/RD 2.0</strong>; Kulturinitiative <strong>Culture@HR/RD</strong>.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <div class="top">
+            <div>
+              <div class="role">Strategisches Resource Management & Personalplanung (MO/SEC)</div>
+              <div class="meta">Mercedes-Benz AG · Bremen</div>
+            </div>
+            <div class="meta">07/2018 – 12/2019</div>
+          </div>
+          <ul>
+            <li>Strategisches Resource Management, Prozessautomatisierung und Einführung von Skill Management.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <div class="top">
+            <div>
+              <div class="role">CAReer – The Top Talent Program (Trainee)</div>
+              <div class="meta">Mercedes-Benz AG · diverse Stationen</div>
+            </div>
+            <div class="meta">07/2017 – 06/2018</div>
+          </div>
+          <ul>
+            <li>Stationen u. a. Personalplanung (East London), Data Analytics After Sales, Office Personalvorstand.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- RIGHT: Skills + Education -->
+      <div class="section">
+        <h2>Skills (interaktiv)</h2>
+
+        <div class="chartbox">
+          <div class="charttitle">
+            <strong>Core Skills (Radar)</strong>
+            <span>Hover für Details</span>
+          </div>
+          <canvas id="skillsRadar" height="220"></canvas>
+        </div>
+
+        <div class="chartbox">
+          <div class="charttitle">
+            <strong>Tools & Data (Bars)</strong>
+            <span>Interaktiv</span>
+          </div>
+          <canvas id="toolsBars" height="210"></canvas>
+        </div>
+
+        <div style="height:10px"></div>
+
+        <h2>Tools</h2>
+        <div class="chips">
+          <span class="chip">Power BI</span>
+          <span class="chip">KNIME</span>
+          <span class="chip">VBA</span>
+          <span class="chip">Excel</span>
+          <span class="chip">Power Automate</span>
+          <span class="chip">PowerPoint</span>
+          <span class="chip">IBM SPSS</span>
+          <span class="chip">Copilot</span>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <h2>Sprachen</h2>
+        <div class="chips">
+          <span class="chip">Deutsch</span>
+          <span class="chip">Englisch</span>
+          <span class="chip">Spanisch</span>
+          <span class="chip">Japanisch</span>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <h2>Ausbildung</h2>
+        <div class="item">
+          <div class="top">
+            <div>
+              <div class="role">M.Sc. Business Economics (HR & Finance)</div>
+              <div class="meta">Otto-von-Guericke-Universität Magdeburg · Ø 1,4 (Top 3%)</div>
+            </div>
+            <div class="meta">04/2014 – 04/2016</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="top">
+            <div>
+              <div class="role">MBA (Auslandssemester)</div>
+              <div class="meta">EAFIT Universität · Kolumbien</div>
+            </div>
+            <div class="meta">06/2015 – 12/2015</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <footer>
+      © <span id="y"></span> Linda Schulze · GitHub Pages
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Werte sind bewusst als "Selbsteinschätzungsskala" gehalten (0–10).
+    // Du kannst sie jederzeit anpassen.
+    const radarLabels = [
+      "Strategic HR Design",
+      "OE & Change",
+      "Projekt-/Programmsteuerung",
+      "Stakeholder & Gremien",
+      "Data-driven HR",
+      "Prozessdesign & Skalierung"
+    ];
+
+    const radarData = [8.5, 8.5, 9.0, 9.0, 8.5, 8.5];
+
+    const toolLabels = ["Power BI", "Excel", "VBA", "KNIME", "Power Automate", "PowerPoint"];
+    const toolData =   [8.5,        9.0,    7.5,   7.5,    7.5,           8.5];
+
+    const commonOpts = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: true }
+      },
+      animation: { duration: 650 }
+    };
+
+    // Radar Chart
+    const ctxR = document.getElementById("skillsRadar");
+    new Chart(ctxR, {
+      type: "radar",
+      data: {
+        labels: radarLabels,
+        datasets: [{
+          label: "Skills",
+          data: radarData,
+          fill: true,
+          borderWidth: 2,
+          pointRadius: 3
+        }]
+      },
+      options: {
+        ...commonOpts,
+        scales: {
+          r: {
+            suggestedMin: 0,
+            suggestedMax: 10,
+            grid: { color: "rgba(255,255,255,.10)" },
+            angleLines: { color: "rgba(255,255,255,.10)" },
+            pointLabels: { color: "rgba(238,241,247,.88)", font: { size: 11 } },
+            ticks: { display: false }
+          }
+        }
+      }
+    });
+
+    // Bar Chart
+    const ctxB = document.getElementById("toolsBars");
+    new Chart(ctxB, {
+      type: "bar",
+      data: {
+        labels: toolLabels,
+        datasets: [{
+          label: "Level (0–10)",
+          data: toolData,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        ...commonOpts,
+        scales: {
+          y: {
+            suggestedMin: 0,
+            suggestedMax: 10,
+            grid: { color: "rgba(255,255,255,.08)" },
+            ticks: { color: "rgba(238,241,247,.78)" }
+          },
+          x: {
+            grid: { display: false },
+            ticks: { color: "rgba(238,241,247,.78)" }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
